@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/static/style.css" />
+<title>Price Prediction</title>
+</head>
+<body>
+    <input type=hidden id="next-sync-unix" value="{{.NextSyncUnix}}" />
+    <div class="side-by-side">
+        <div>
+            <h2>Price history</h2>
+            <ul id="price-history">
+                {{range .PriceHistory}}
+                    <li>${{.}}</li>
+                {{end}}
+            </ul>
+        </div>
+        <div>
+            <h2>Guess history</h2>
+            <ul id="guess-history">
+                {{range .GuessHistory}}
+                    <li>${{.}}</li>
+                {{end}}
+            </ul>
+        </div>
+    </div>
+
+    <h2>Total gains</h2>
+    <p>{{.RewardTotal}}</p>
+
+    <h2>Guess the next price</h2>
+    <div id="news" class="{{.News}}"></div>
+    <span id="your-guess"></span>
+    <input type="text" id="guess" placeholder="Enter your guess">
+    <button type="submit" id="btn-submit">Submit Guess</button>
+    <div id="countdown"></div>
+
+    <script src="/static/client.js"></script>
+</body>
+</html>
